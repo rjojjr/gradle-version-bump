@@ -53,9 +53,9 @@ public class FileEditor {
                     buffer.add("def build = " + buildNum);
                 } else if (line.contains("def versionString")){
                     version = line.split(" = ")[1];
-                    buffer.add("def versionString = '" + version + "'");
+                    buffer.add("def versionString = " + version);
                 } else if(line.contains("version '")){
-                    buffer.add("version  '" + version + "." + buildNum + "'");
+                    buffer.add("version " + version + "." + buildNum);
                 }else{
                     buffer.add(line);
                 }

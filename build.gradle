@@ -6,6 +6,11 @@ plugins {
 group 'com.github.rjojjr'
 version '1.0-SNAPSHOT'
 
+task fatJar(type: Jar) {
+    baseName = project.name
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
 
 application {
     mainClassName = 'com.github.rjojjr.gradle.version.Main'
@@ -14,7 +19,7 @@ application {
 if (!hasProperty('mainClass')) {
     ext.mainClass = 'com.github.rjojjr.gradle.version.Main'
 }
-jar {
+fatJar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     manifest {
         attributes(
