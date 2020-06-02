@@ -45,17 +45,17 @@ public class FileEditor {
         int buildNum = 0;
         try{
             Scanner in = new Scanner(gradle);
-            while(in.hasNext()){
-                String line = in.next() + in.nextLine();
+            while(in.hasNextLine()){
+                String line = in.nextLine();
                 if(line.contains("def build")){
                     int build = Integer.parseInt(line.split(" = ")[1]);
                     buildNum = build + 1;
                     buffer.add("def build = " + buildNum);
                 } else if (line.contains("def versionString")){
-                    version = line.split(" = ")[1];
-                    buffer.add("def versionString = " + version);
+                    version = line.split(" = ")[1].split("'")[1];
+                    buffer.add("def versionString = '" + version + "'");
                 } else if(line.contains("version '")){
-                    buffer.add("version " + version + "." + buildNum);
+                    buffer.add("version '" + version + "." + buildNum + "'");
                 }else{
                     buffer.add(line);
                 }
