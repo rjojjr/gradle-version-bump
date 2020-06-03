@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.github.rjojjr'
-version '1.0-SNAPSHOT'
+version '1.0'
 
 task fatJar(type: Jar) {
     baseName = project.name
